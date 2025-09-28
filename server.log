@@ -1,0 +1,72 @@
+INFO:     Started server process [5958]
+INFO:     Waiting for application startup.
+INFO:main:Starting Voice Agent Middleware Server...
+INFO:services.supabase_service:Supabase client initialized successfully
+INFO:main:Server started successfully
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:main:🔍 DEBUG: Starting incoming call handler
+INFO:main:🔍 DEBUG: Form data received: {'CallSid': 'CA1234567890abcdef', 'From': '+1234567890', 'To': '+1234567890', 'CallStatus': 'ringing', 'Direction': 'inbound'}
+INFO:main:🔍 DEBUG: Webhook data parsed successfully
+INFO:main:Incoming call from +1234567890 to +1234567890
+INFO:main:🔍 DEBUG: Generated session ID: b21d9b9a-1b9f-412c-a349-a983caefb852
+INFO:main:🔍 DEBUG: Call session created successfully
+INFO:main:🔍 DEBUG: Session stored in active_sessions
+INFO:main:🔍 DEBUG: Retrieving vendor details for phone: +1234567890
+INFO:httpx:HTTP Request: GET https://pgwisrxochxwpimipjxx.supabase.co/rest/v1/knowledge_base?select=%2A&user_id=eq.e357d1d4-a8d3-4e7d-b45e-bf8855332818 "HTTP/2 200 OK"
+INFO:services.supabase_service:Found vendor details for phone +1234567890: user_id=e357d1d4-a8d3-4e7d-b45e-bf8855332818, documents=2
+INFO:main:🔍 DEBUG: Vendor details retrieved: True
+INFO:main:🔍 DEBUG: Session updated with vendor details
+INFO:main:🔍 DEBUG: Retrieving knowledge base for user: e357d1d4-a8d3-4e7d-b45e-bf8855332818
+INFO:httpx:HTTP Request: GET https://pgwisrxochxwpimipjxx.supabase.co/rest/v1/knowledge_base?select=%2A&user_id=eq.e357d1d4-a8d3-4e7d-b45e-bf8855332818 "HTTP/2 200 OK"
+INFO:main:🔍 DEBUG: Knowledge base retrieved: 2 documents
+INFO:main:🔍 DEBUG: RAG sources prepared: 2 sources
+INFO:main:🔍 DEBUG: Initializing RAG system...
+ERROR:services.rag_service:Error initializing knowledge base for session b21d9b9a-1b9f-412c-a349-a983caefb852: 'dict' object has no attribute 'source'
+INFO:main:🔍 DEBUG: RAG system initialized successfully
+INFO:main:🔍 DEBUG: Generating WebSocket URL...
+INFO:main:🔍 DEBUG: WebSocket URL: wss://localhost/media-stream/b21d9b9a-1b9f-412c-a349-a983caefb852
+INFO:main:🔍 DEBUG: Generating TwiML response...
+INFO:main:🔍 DEBUG: TwiML response generated successfully
+INFO:main:🔍 DEBUG: Session status updated to connected
+INFO:main:Call session b21d9b9a-1b9f-412c-a349-a983caefb852 initiated successfully
+✅ Loaded environment variables from /Users/gnani/Desktop/spam/hacker-ring-RVIT/Proctor-AI-Repo/.env.local
+INFO:     127.0.0.1:63816 - "POST /incoming-call HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63820 - "GET /active-sessions HTTP/1.1" 200 OK
+DEBUG:    = connection is CONNECTING
+DEBUG:    < GET /media-stream/b21d9b9a-1b9f-412c-a349-a983caefb852 HTTP/1.1
+DEBUG:    < host: localhost:8001
+DEBUG:    < upgrade: websocket
+DEBUG:    < connection: Upgrade
+DEBUG:    < sec-websocket-key: 1y2arSarBGjHh7glwcCnUQ==
+DEBUG:    < sec-websocket-version: 13
+DEBUG:    < sec-websocket-extensions: permessage-deflate; client_max_window_bits
+DEBUG:    < user-agent: Python/3.13 websockets/15.0.1
+INFO:main:Client connected to media stream: b21d9b9a-1b9f-412c-a349-a983caefb852
+INFO:     127.0.0.1:63848 - "WebSocket /media-stream/b21d9b9a-1b9f-412c-a349-a983caefb852" [accepted]
+DEBUG:    > HTTP/1.1 101 Switching Protocols
+DEBUG:    > Upgrade: websocket
+DEBUG:    > Connection: Upgrade
+DEBUG:    > Sec-WebSocket-Accept: V8lS5/bk8ZiNVBDRZr+eN/jKnBM=
+DEBUG:    > Sec-WebSocket-Extensions: permessage-deflate
+DEBUG:    > date: Sat, 27 Sep 2025 23:45:02 GMT
+DEBUG:    > server: uvicorn
+INFO:     connection open
+DEBUG:    = connection is OPEN
+DEBUG:    < TEXT '{"type": "test", "data": "hello from real session"}' [51 bytes]
+INFO:services.openai_realtime_service:Sending session update: alloy
+ERROR:services.openai_realtime_service:Error creating OpenAI session: received 3000 (registered) invalid_request_error.invalid_api_key; then sent 3000 (registered) invalid_request_error.invalid_api_key
+ERROR:main:WebSocket error for session b21d9b9a-1b9f-412c-a349-a983caefb852: received 3000 (registered) invalid_request_error.invalid_api_key; then sent 3000 (registered) invalid_request_error.invalid_api_key
+INFO:httpx:HTTP Request: POST https://pgwisrxochxwpimipjxx.supabase.co/rest/v1/call_metrics "HTTP/2 201 Created"
+INFO:services.supabase_service:Call metrics saved successfully for call CA1234567890abcdef
+INFO:main:Call session b21d9b9a-1b9f-412c-a349-a983caefb852 cleaned up successfully
+DEBUG:    < CLOSE 1000 (OK) [2 bytes]
+DEBUG:    = connection is CLOSING
+DEBUG:    > CLOSE 1000 (OK) [2 bytes]
+DEBUG:    x half-closing TCP connection
+DEBUG:    = connection is CLOSED
+INFO:     connection closed
+INFO:httpx:HTTP Request: GET https://pgwisrxochxwpimipjxx.supabase.co/rest/v1/call_metrics?select=call_duration&user_id=eq.e357d1d4-a8d3-4e7d-b45e-bf8855332818 "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: GET https://pgwisrxochxwpimipjxx.supabase.co/rest/v1/knowledge_base?select=file_size&user_id=eq.e357d1d4-a8d3-4e7d-b45e-bf8855332818 "HTTP/2 200 OK"
+INFO:     127.0.0.1:65221 - "GET /call-metrics/e357d1d4-a8d3-4e7d-b45e-bf8855332818 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65238 - "GET /active-sessions HTTP/1.1" 200 OK
