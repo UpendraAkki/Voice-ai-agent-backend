@@ -29,8 +29,13 @@ class RAGService:
                 if self.api_key:
                     headers["Authorization"] = f"Bearer {self.api_key}"
                 
+                # Fix the URL - the base_url doesn't include /api/rag
+                url = self.base_url
+                if not url.endswith('/api/rag'):
+                    url = f"https://{url}/api/rag"
+                
                 async with session.get(
-                    f"{self.base_url}?action=stats",
+                    f"{url}?action=stats",
                     headers=headers,
                     timeout=aiohttp.ClientTimeout(total=10)
                 ) as response:

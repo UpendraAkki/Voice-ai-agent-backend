@@ -46,9 +46,10 @@ class AzureVoiceService:
             }
             
             async with aiohttp.ClientSession() as session:
-                # Try to validate the endpoint by making a simple request
+                # Azure Cognitive Services doesn't have a /health endpoint
+                # Test with a basic endpoint instead
                 async with session.get(
-                    f"{self.settings.azure_voice_endpoint}/health",
+                    f"{self.settings.azure_voice_endpoint}",
                     headers=headers,
                     timeout=aiohttp.ClientTimeout(total=10)
                 ) as response:
